@@ -1,0 +1,55 @@
+#4a. Use mtcars.csv
+import matplotlib
+from matplotlib import pyplot as plt
+import pandas as pd
+import seaborn as sns
+import numpy as np
+
+df=pd.read_csv('mtcars.csv')
+df=df.head()
+print("Data Set :\n")
+print(df)
+
+fig=plt.figure()
+plt.title('Histogram')
+plt.hist(df['mpg'],bins=5,edgecolor='black')
+
+fig=plt.figure()
+x=df.wt
+y=df.mpg
+plt.xlabel("weight of the car")
+plt.ylabel("MPG")
+plt.title('Scatter plot to determine the relationship between weight of the car and mpg')
+plt.scatter(x,y)
+
+fig=plt.figure()
+plt.title('Bar Graph')
+x=df.model
+y=df.mpg
+plt.bar(x,y)
+
+df=pd.read_csv('mtcars.csv')
+fig=plt.figure()
+plt.title('Box plot of MPG')
+sns.boxplot(df['mpg'])
+
+print("Interprting the five - number summary:\n")
+
+print(np.mean(df.mpg))
+print(np.sum(df.mpg))
+print(np.median(df.mpg))
+print(np.std(df.mpg))
+print(np.var(df.mpg))
+
+#4b
+#creating datafram
+import pandas as pd
+
+df=pd.DataFrame({'book_name':['book1','book2','book3','book4','book1','book2','book3','book5'],
+                 'book_type':['Maths','Physics','Computer','Science','Maths','Physics','Computer','English'],
+                 'book_id':[1,2,3,4,5,6,7,8]})
+print("DataFrame Created:\n")
+print(df)
+
+r=df.groupby(["book_name","book_type"])["book_type"].count().reset_index(name="Count")
+print("\n",r,"\n")
